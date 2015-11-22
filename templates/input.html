@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    $( document ).ready(function() {
+
+    $('#btnSignUp').click(function() {
+
+        $.ajax({
+            url: '/',
+            data: $('form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    location.reload();
+    });
+});
+
+</script>
+
+</head>
+<body>
+
+
+<div class="container">
+
+
+  <form action="/">
+
+    Input 1 :<select name="Input1" id="Input1">
+  <option value="1">Housing Prices</option>
+  <option value="2">Military Purchase</option>
+  <option value="3">Both</option>
+</select>
+
+<select name="Range" id="Range">
+  <option value="1">Present Value</option>
+  <option value="2">Last 5 years</option>
+  <option value="3">Last 10 years</option>
+</select>
+
+   <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Submit</button>
+</form>
+
+</div>
+<img src="static/output.png"/>
+
+</body>
+</html>
