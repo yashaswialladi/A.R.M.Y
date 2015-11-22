@@ -1,7 +1,10 @@
 import housing_data
 import military_data
 import queries
+import numpy as np
 from runQueryRun import getDataFromQuery
+from sklearn import preprocessing
+
 
 def analysis(inputQuery):
 
@@ -19,8 +22,18 @@ def analysis(inputQuery):
         elif inputQuery[0] == "military":
             analyzeQueryM = queries.queries['military']
             finalOutput = (military_data.analysis(getDataFromQuery(analyzeQueryM),inputQuery[1]))
+        elif inputQuery[0] == "deathCountry":
+            analyzeQueryD = queries.queries['deathCountry']
+            output = getDataFromQuery(analyzeQueryD)
+            value = []
+            for v in output:
+                value.append(v[1])
+            value = preprocessing.normalize(value)
+            finalOutput = []
+            for v in xrange(len(value[0])):
+                finalOutput.append([output[v][0],value[0][v]])
+            finalOutput = dict(finalOutput)
 
     return finalOutput
 
-
-analysis(['housing','military',1])
+#print analysis(['deathCountry',2])
